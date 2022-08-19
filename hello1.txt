@@ -1,4 +1,4 @@
-first
+master work + first
 second
 third
 fourth
