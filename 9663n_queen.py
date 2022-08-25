@@ -19,6 +19,7 @@ def check(num_col, my_chess) :
 
 def n_queens(num_col, size, my_chess) :
     global solution
+    # 재귀. 탈출조건 있어야한다. 이 경우 if else로 작성.
     if num_col == size :
         solution += 1
         return
