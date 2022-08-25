@@ -17,16 +17,16 @@ def check(num_col, my_chess) :
     return True
 
 
-def n_queens(num_col, size) :
+def n_queens(num_col, size, my_chess) :
     global solution
     if num_col == size :
         solution += 1
         return
     else :
         for i in range(size) :
-            chess[num_col] = i
+            my_chess[num_col] = i
             if check(num_col, chess) :
-                n_queens(num_col+1, size)
+                n_queens(num_col+1, size, my_chess)
 
-n_queens(0, size)
+n_queens(0, size, chess)
 print(solution)
