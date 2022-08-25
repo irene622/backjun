@@ -1,24 +1,36 @@
 num_num = int(input())
 num_list = list(map(int, input().split()))
 
-[3,2,1,3,2,1]
-[2,1,0,2,1,0]
+def make_num_dict(num_list) :
+    distinct_dict = {}
+    for i in set(num_list) :
+        distinct_dict[i] = 0
+    return distinct_dict
 
-[2, 4, -10, 4, -9]
-[2, 3, 0, 3, 1]
 
 def comp_coordinates(num_num, num_list) :
-    result = [0] * num_num
-    for i in range(num_num) :
-        for side_idx in range(i+1, num_num) :
-            if num_list[i] < num_list[side_idx] :
-                result[side_idx] += 1
-            elif num_list[i] == num_list[side_idx] :
+    dist_dict = make_num_dict(num_list)
+    num = len(set(num_list))
+    dist_num_list = list(set(num_list))
+
+    for i in range(num) :
+        for side_idx in range(i+1, num) :
+            if dist_num_list[i] < dist_num_list[side_idx] :
+                dist_dict[dist_num_list[side_idx]] += 1
+            elif dist_num_list[i] == dist_num_list[side_idx] :
                 continue
             else :
-                result[i] += 1
+                dist_dict[dist_num_list[i]] += 1
         # else :
         #     result[i] = len(set(num_list)) - 1
+    return dist_dict
+
+
+def print_result(num_num, num_list) :
+    result = ''
+    result_dict = comp_coordinates(num_num, num_list)
+    for num in num_list :
+        result += str(result_dict[num]) + ' '
     return result
 
-print(comp_coordinates(num_num, num_list))
+print(print_result(num_num, num_list))
