@@ -21,8 +21,6 @@ def comp_coordinates(num_num, num_list) :
                 continue
             else :
                 dist_dict[dist_num_list[i]] += 1
-        # else :
-        #     result[i] = len(set(num_list)) - 1
     return dist_dict
 
 
