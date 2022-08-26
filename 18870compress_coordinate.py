@@ -8,7 +8,7 @@ def make_num_dict(num_list) :
     return distinct_dict
 
 
-def comp_coordinates(num_num, num_list) :
+def comp_coordinates(num_list) :
     dist_dict = make_num_dict(num_list)
     num = len(set(num_list))
     dist_num_list = list(set(num_list))
@@ -24,11 +24,11 @@ def comp_coordinates(num_num, num_list) :
     return dist_dict
 
 
-def print_result(num_num, num_list) :
+def print_result(num_list) :
     result = ''
-    result_dict = comp_coordinates(num_num, num_list)
+    result_dict = comp_coordinates(num_list)
     for num in num_list :
         result += str(result_dict[num]) + ' '
     return result
 
-print(print_result(num_num, num_list))
+print(print_result(num_list))
