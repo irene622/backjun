@@ -23,7 +23,7 @@ def find_multiple_index(one_dir, direction) :
         return list(filter(lambda x: direction[x] == one_dir, range(6)))
     return None
 
-def cal_small_area(direction, distance) :
+def _cal_small_area(direction, distance) :
     small = []
     for i in range(1,5) :
         if find_multiple_index(i, direction) is not None :
@@ -34,6 +34,17 @@ def cal_small_area(direction, distance) :
     else :
         small_area = distance[small[0][1]] * distance[small[1][0]]
     return small_area
+
+def cal_small_area(direction, distance) :
+    cyclic_direction = direction * 2
+    cyclic_distance = distance * 2
+
+    for i in range(0, 9) :
+        if cyclic_direction[i] == cyclic_direction[i+2] :
+            if cyclic_direction[i+1] == cyclic_direction[i+3] :
+                # curve_dist = [cyclic_direction[i], cyclic_direction[i+1], cyclic_direction[i+2], cyclic_direction[i+3]]
+                small_area = cyclic_distance[i+1] * cyclic_distance[i+2]
+                return small_area
 
 
 def main() :
