@@ -1,4 +1,0 @@
-backup
-backup2 in code_pratice
-backup3 in git_study
-backup4 in git_study
