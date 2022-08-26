@@ -1,6 +1,7 @@
 num_num = int(input())
 num_list = list(map(int, input().split()))
 dist_num_list = list(set(num_list))
+# python list.sort = merge sort in blogs... :(
 dist_num_list.sort()
 
 compressed_coordinates = {}
