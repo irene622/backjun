@@ -1,9 +1,11 @@
 # Stack
-commands_num = int(input().strip())
+import sys
+
+commands_num = int(sys.stdin.readline())
 stack = []
+
 for _ in range(commands_num):
-    a = input().strip()
-    a = [i for i in a.split(' ')]
+    a = sys.stdin.readline().split()
     
     if a[0] == '1':
         stack.append(a[1])
