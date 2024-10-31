@@ -26,3 +26,5 @@ for _ in range(commands_num):
             print(-1)
         else:
             print(stack[-1])
+
+# input() 과 sys.stdin()차이 설명 : https://developeryuseon.tistory.com/90
