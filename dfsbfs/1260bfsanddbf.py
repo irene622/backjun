@@ -20,7 +20,7 @@ for _ in range(lines):
 bfsvisited = {k:v for k,v in dfsvisited.items()}
 
 def dfs(starter):
-    stack = [starter]  # 스택 사용
+    stack = [starter]  # 스택 사용 # 새롭게 넣은걸 먼저 한다.
     dfsvisited[starter] = True
     dfs_path = str(starter)
 
@@ -40,7 +40,7 @@ def dfs(starter):
 #     print(str(starter), end=' ')
 #     for neighbor in sorted(graph[starter]):
 #         if not dfsvisited[neighbor]:
-#             dfs(neighbor)
+#             bfs_path += ' ' + dfs(neighbor)
 #     # return bfs_path
 
 print(dfs(starter))
@@ -48,7 +48,7 @@ print(dfs(starter))
 # print('')
 
 def bfs(starter):
-    queue = deque([starter])
+    queue = deque([starter]) # 넣었던걸 다 하고, 다음 단계로 가겠다.
     bfsvisited[starter] = True
     bfs_path = str(starter)
 
