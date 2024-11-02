@@ -1,4 +1,5 @@
 import sys
+from collections import deque
 
 num = int(sys.stdin.readline().strip())
 RGB_grid = [sys.stdin.readline().strip() for _ in range(num)]
@@ -18,10 +19,12 @@ def check_region(grid, x, y):
 for i in range(num):
     for j in range(num):
         if not visited[i][j]:
-            recursive = check_region(RGB_grid, i, j)    
+            recursive = deque([(i,j)])
             while recursive:
-                now_x, now_y = recursive.pop(0)
-                recursive += check_region(RGB_grid, now_x, now_y)
+                now_x, now_y = recursive.popleft()
+                if visited[now_x][now_y]:
+                    continue
+                recursive.extend(check_region(RGB_grid, now_x, now_y))
             num_RGB_region += 1
 
 RB_grid = [line.replace('G', 'R') for line in RGB_grid]
@@ -30,10 +33,12 @@ num_RB_region = 0
 for i in range(num):
     for j in range(num):
         if not visited[i][j]:
-            recursive = check_region(RB_grid, i, j)
+            recursive = deque([(i,j)])
             while recursive:
-                now_x, now_y = recursive.pop(0)
-                recursive += check_region(RB_grid, now_x, now_y)
+                now_x, now_y = recursive.popleft()
+                if visited[now_x][now_y]:
+                    continue
+                recursive.extend(check_region(RB_grid, now_x, now_y))
             num_RB_region += 1
 
 print(num_RGB_region, num_RB_region)
