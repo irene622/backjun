@@ -9,15 +9,11 @@ for i in range(row):
 
 directions = [(1,0),(0,1),(-1,0),(0,-1)]
 visited = [[False]*col for _ in range(row)]
-print(grid)
-print('----')
-print(visited)
-print('---')
-def bfs(grid, x, y):
+def bfs(grid, now_x, now_y):
     w_num, b_num = 0, 0
-    color = grid[x][y]
-    visited[x][y] = '1' # 방문함
-    next = deque([(x,y)])
+    color = grid[now_x][now_y]
+    visited[now_x][now_y] = True # 방문함
+    next = deque([(now_x,now_y)])
 
     if color == 'W':
         w_num += 1
@@ -25,13 +21,13 @@ def bfs(grid, x, y):
         b_num += 1
 
     while next:
+        x, y = next.popleft()
         for i, j in directions:
-            x, y = next.popleft()
             dx, dy = x+i, y+j
             if 0 <= dx < col and 0 <= dy < row:
                 if color == grid[dx][dy] and visited[dx][dy] == False:
-                    visited[dx][dy] = '1'
-                    if color == 'B':
+                    visited[dx][dy] = True
+                    if color == 'W':
                         w_num += 1
                     else:
                         b_num += 1
@@ -39,11 +35,12 @@ def bfs(grid, x, y):
     return w_num, b_num
 
     
-
+w_num, b_num = 0,0 
 for i in range(row):
     for j in range(col):
         if visited[i][j] == False:
             num = bfs(grid, i, j)
-            print(num)
+            w_num += num[0]**2
+            b_num += num[1]**2
 
-
+print(w_num, b_num)
