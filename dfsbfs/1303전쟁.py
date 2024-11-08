@@ -2,7 +2,7 @@ import sys
 from collections import deque
 
 sys.stdin = open('dfsbfs/1303.txt', 'r')
-row, col = map(int, sys.stdin.readline().strip().split(' '))
+col, row = map(int, sys.stdin.readline().strip().split(' ')) # 가로크기 = 세로줄수, 세로크기 = 가로줄수
 grid = []
 for i in range(row):
     grid.append(sys.stdin.readline().strip())
@@ -24,7 +24,7 @@ def bfs(grid, now_x, now_y):
         x, y = next.popleft()
         for i, j in directions:
             dx, dy = x+i, y+j
-            if 0 <= dx < col and 0 <= dy < row:
+            if 0 <= dx < row and 0 <= dy < col:
                 if color == grid[dx][dy] and visited[dx][dy] == False:
                     visited[dx][dy] = True
                     if color == 'W':
