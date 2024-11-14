@@ -2,6 +2,7 @@ import sys
 from collections import deque
 
 me, you = map(int, sys.stdin.readline().strip().split(' '))
+visited = [0] * 100_001
 
 def bfs(status, goal):
     next = deque([status])
@@ -10,16 +11,18 @@ def bfs(status, goal):
 
     while next:
         current = next.popleft()
+
+        if current == goal:
+            num_path += 1
+            sec = visited[current]
+
         directions = [current-1, current+1, current*2]
         for i in directions:
-            if 0<= i <= 100_000:
-                sec += 1
-                if i == goal:
-                    print(i)
-                    if sec < sec: # TODO: 최소시간 경로인걸 어떻게 판단하지?
-                        num_path += 1
-                    return sec, num_path
-                else:
-                    next.append(i)
+            if 0<= i <= 100_000 and (visited[i] == 0 or visited[i]== visited[current] +1): #(visited[i] == 0 or visited[i]== visited[current] +1)?
+                visited[i] = visited[current] + 1
+                next.append(i)
+    print(sec)
+    print(num_path)
+    return num_path, sec
 
-print(bfs(me, you))
+bfs(me, you)
