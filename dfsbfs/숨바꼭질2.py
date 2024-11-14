@@ -15,6 +15,7 @@ def bfs(status, goal):
         if current == goal:
             num_path += 1
             sec = visited[current]
+            continue
 
         directions = [current-1, current+1, current*2]
         for i in directions:
