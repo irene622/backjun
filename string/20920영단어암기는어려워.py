@@ -3,7 +3,7 @@ import sys
 sys.stdin = open('string/ex.txt', 'r')
 N, limit = map(int, sys.stdin.readline().strip().split(' '))
 
-#  'apple' : (5, 1)
+#  'apple' : (count, length, word)
 words = {}
 for i in range(N):
     word = sys.stdin.readline().strip()
