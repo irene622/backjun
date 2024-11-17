@@ -18,5 +18,7 @@ for i in range(N):
 
 print(words)
 result = sorted(words.items(), key=lambda x: (-x[1][0], -x[1][1], x[1][2]))
-print(result)
+
+for i in result:
+    print(i[0])
 
