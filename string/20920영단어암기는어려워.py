@@ -16,7 +16,6 @@ for i in range(N):
     else:
         continue
 
-print(words)
 result = sorted(words.items(), key=lambda x: (-x[1][0], -x[1][1], x[1][2]))
 
 for i in result:
