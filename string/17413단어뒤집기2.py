@@ -2,31 +2,33 @@ import sys
 
 line = sys.stdin.readline().strip()
 
-result = ''
+# Using stack
+stack = []
+ans = ''
 open = False
-reversed_word = ''
 for char in line:
-    if open is False:
+    if char == '<':
+        open = True
+        for i in range(len(stack)):
+            ans += stack.pop()
+    
+    stack.append(char)
+    if char == '>':
+        open = False
+        for _ in range(len(stack)):
+            ans += stack.pop(0)
+        
+    if open == False:
         if char == ' ':
-            result += reversed_word[::-1]
-            result += ' '
-            reversed_word = ''
-        elif char == '<':
-            open = True
-            if reversed_word != '':
-                result += reversed_word[::-1]
-                reversed_word = ''
-            result += '<'
-        else:
-            reversed_word += char
-    elif open is True:
-        if char == '>':
-            result += '>'
-            open = False
-        else:
-            result += char
+            for i in range(len(stack)):
+                if i == 0:
+                    stack.pop()
+                    continue
+                ans += stack.pop()
+            ans += ' '
 
-if reversed_word != '':
-    result += reversed_word[::-1]
+if len(stack) != 0:
+    for _ in range(len(stack)):
+        ans += stack.pop()
 
-print(result)
+print(ans)
