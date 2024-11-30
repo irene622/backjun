@@ -5,15 +5,13 @@ info = {}
 seq = sys.stdin.readline().strip().split(' ')
 for i, num in enumerate(seq):
     if info.get(num) == None:
-        info[num] = {'freq': 0, 'order': -1}
+        info[num] = 0
 
-    info[num]['freq'] += 1
-    if info[num]['order'] == -1:
-        info[num]['order'] = i
+    info[num] += 1
 
-sorted_result = sorted(info.keys(), key = lambda x: (-info[x]['freq'], info[x]['order'])) 
+sorted_result = sorted(info.items(), key = lambda x: -x[1]) 
 
 result = ''
-for num in sorted_result:
-    result += (num+' ')*info[num]['freq']
-print(result.strip())
+for num, freq in sorted_result:
+    for _ in range(freq):
+        print(num, end=' ')
