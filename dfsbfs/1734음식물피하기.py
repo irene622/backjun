@@ -23,7 +23,7 @@ def calcu_size(grid, start):
 
     directions = [(1,0), (0,1), (-1,0), (0,-1)]
     while stack:
-        curr_x, curr_y = stack.popleft()
+        curr_x, curr_y = stack.popleft() # popleft = bfs
         for dx, dy in directions:
             next_x, next_y = curr_x+dx, curr_y+dy
             if 0 <= next_x < N and 0<= next_y < M:
