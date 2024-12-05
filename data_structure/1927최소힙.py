@@ -1,6 +1,7 @@
 ### copy from https://developerbee.tistory.com/76
 import sys
 
+
 class Heap:
     def __init__(self):
         self.heap = list()
@@ -8,6 +9,7 @@ class Heap:
         # [None,1,3,5]에서 2가 새로운 숫자. [None,1,3,5,2]이고 현재 idx=4이고 부모 idx는 2.
         # move_up = True이면 바꾼다.
         # [None,1,3,5,2]를 idx를 이용해서 [None,1,2,5,3]으로 바꾼다.
+
 
     def pop(self):
         if len(self.heap) <= 1:
@@ -38,8 +40,10 @@ class Heap:
                         idx = right_child_idx
 
             return output
-    
+
+
     def move_down(self, idx):
+        # Compare current idx and its child idx.
         left_child_idx = idx * 2
         right_child_idx = idx * 2 + 1
         
@@ -70,6 +74,7 @@ class Heap:
             
     
     def move_up(self, idx):
+        # Compare current idx and its parents idx.
         if idx <= 1:
             return False
         
@@ -90,9 +95,6 @@ class Heap:
             idx = parent_idx
 
 
-
-
-
 h = Heap()
 sys.stdin = open('data_structure/ex.txt')
 N = int(sys.stdin.readline())
@@ -102,6 +104,9 @@ for _ in range(N):
         print(h.pop())
     else:
         h.insert(num)
+
+
+
 
 
 ### copy from https://developerbee.tistory.com/76
