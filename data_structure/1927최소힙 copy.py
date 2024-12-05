@@ -14,8 +14,27 @@ class Heap:
         else:
             output = self.heap[1]
 
+            # 왜있음?
             self.heap[1] = self.heap[-1]
             del self.heap[-1]
+
+            idx = 1
+            while self.move_down(idx):
+                left_child_idx = idx*2
+                right_child_idx = idx*2+1
+
+                # idx의 오른쪽 자식이 없을 때
+                if right_child_idx >= len(self.heap):
+                    if self.heap[idx] > self.heap[left_child_idx]:
+                        self.heap[idx], self.heap[left_child_idx] = self.heap[left_child_idx], self.heap[idx]
+                        idx = left_child_idx
+                else:
+                    if self.heap[idx] > self.heap[left_child_idx]:
+                        self.heap[idx], self.heap[left_child_idx] = self.heap[left_child_idx], self.heap[idx]
+                        idx = left_child_idx
+                    elif self.heap[idx] > self.heap[right_child_idx]:
+                        self.heap[idx], self.heap[right_child_idx] = self.heap[right_child_idx], self.heap[idx]
+                        idx = right_child_idx
 
             return output
     
@@ -47,6 +66,29 @@ class Heap:
                 return True
             else:
                 return False
+            
+    
+    def move_down(self, idx):
+        left_child_idx = idx * 2
+        right_child_idx = idx * 2 + 1
+
+        if left_child_idx >= len(self.heap):
+            return False
+        elif right_child_idx >= len(self.heap):
+            if self.heap[idx] > self.heap[left_child_idx]:
+                return True
+            else:
+                return False
+        else:
+            # idx 2가 왼쪽자식보다 크면 바꾼다.
+            if self.heap[idx] > self.heap[left_child_idx]:
+                return True
+            # idx 2가 오른쪽자식보다 크면 바꾼다.
+            elif self.heap[idx] > self.heap[right_child_idx]:
+                return True
+            else:
+                return False
+
         
 
 
