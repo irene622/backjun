@@ -32,12 +32,15 @@ class Heap:
                         self.heap[idx], self.heap[left_child_idx] = self.heap[left_child_idx], self.heap[idx]
                         idx = left_child_idx
                 else:
-                    if self.heap[idx] > self.heap[left_child_idx]:
-                        self.heap[idx], self.heap[left_child_idx] = self.heap[left_child_idx], self.heap[idx]
-                        idx = left_child_idx
-                    elif self.heap[idx] > self.heap[right_child_idx]:
-                        self.heap[idx], self.heap[right_child_idx] = self.heap[right_child_idx], self.heap[idx]
-                        idx = right_child_idx
+                    # TODO...
+                    if self.heap[left_child_idx] < self.heap[right_child_idx]:
+                        if self.heap[idx] > self.heap[left_child_idx]:
+                            self.heap[idx], self.heap[left_child_idx] = self.heap[left_child_idx], self.heap[idx]
+                            idx = left_child_idx
+                    else:
+                        if self.heap[idx] > self.heap[right_child_idx]:
+                            self.heap[idx], self.heap[right_child_idx] = self.heap[right_child_idx], self.heap[idx]
+                            idx = right_child_idx
 
             return output
 
@@ -71,8 +74,8 @@ class Heap:
                 return True
             else:
                 return False
-            
-    
+      
+
     def move_up(self, idx):
         # Compare current idx and its parents idx.
         if idx <= 1:
