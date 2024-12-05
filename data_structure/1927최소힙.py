@@ -1,31 +1,121 @@
+### copy from https://developerbee.tistory.com/76
 import sys
-from collections import deque
 
-N = int(sys.stdin.readline().strip())
-heap = [] # append number. its index is parents order
-for i in range(N):
-    n = int(sys.stdin.readline().strip())
-    if n == 0:
-        if len(heap) == 0:
-            print(0)
+class Heap:
+    def __init__(self):
+        self.heap = list()
+        self.heap.append(None)
+        # [None,1,3,5]에서 2가 새로운 숫자. [None,1,3,5,2]이고 현재 idx=4이고 부모 idx는 2.
+        # move_up = True이면 바꾼다.
+        # [None,1,3,5,2]를 idx를 이용해서 [None,1,2,5,3]으로 바꾼다.
+
+    def pop(self):
+        if len(self.heap) <= 1:
+            return 0
         else:
-            print(heap[0], "h")
-    else:
-        # heap push
-        heap.append(n)
-        current = len(heap) - 1
-        while current > 0 :
-            parent = (current - 1)//2
-            if heap[parent] > heap[current]:
-                heap[parent], heap[current] = heap[current], heap[parent]
-                current = parent
+            output = self.heap[1]
+
+            # 왜있음?
+            self.heap[1] = self.heap[-1]
+            del self.heap[-1]
+
+            idx = 1
+            while self.move_down(idx):
+                left_child_idx = idx*2
+                right_child_idx = idx*2+1
+
+                # idx의 오른쪽 자식이 없을 때
+                if right_child_idx >= len(self.heap):
+                    if self.heap[idx] > self.heap[left_child_idx]:
+                        self.heap[idx], self.heap[left_child_idx] = self.heap[left_child_idx], self.heap[idx]
+                        idx = left_child_idx
+                else:
+                    if self.heap[idx] > self.heap[left_child_idx]:
+                        self.heap[idx], self.heap[left_child_idx] = self.heap[left_child_idx], self.heap[idx]
+                        idx = left_child_idx
+                    elif self.heap[idx] > self.heap[right_child_idx]:
+                        self.heap[idx], self.heap[right_child_idx] = self.heap[right_child_idx], self.heap[idx]
+                        idx = right_child_idx
+
+            return output
+    
+    def move_up(self, idx):
+        left_child_idx = idx * 2
+        right_child_idx = idx * 2 + 1
+        
+        # idx의 왼쪽 자식이 없을 때.
+        # idx=2의 왼쪽 자식은 idx 4임. 
+        # idx 4가 존재하면 len(self.heap)이 5이상임. 아니면 len(self.heap)이 4이하임.
+        if left_child_idx >= len(self.heap):
+            return False
+        
+        # idx의 오른쪽 자식이 없을 때.
+        # idx 2의 오른쪽 자식은 idx 5임. 
+        # idx 5가 존재하면 len(self.heap)이 6이상임. 아니면 len(self.heap)이 5이하임.
+        elif right_child_idx >= len(self.heap):
+            if self.heap[idx] > self.heap[right_child_idx]:
+                return True
             else:
-                break
-    print(heap)
+                return False
+            
+        else:
+            # idx 2가 왼쪽자식보다 크면 바꾼다.
+            if self.heap[idx] > self.heap[left_child_idx]:
+                return True
+            # idx 2가 오른쪽자식보다 크면 바꾼다.
+            elif self.heap[idx] > self.heap[right_child_idx]:
+                return True
+            else:
+                return False
+            
+    
+    def move_down(self, idx):
+        left_child_idx = idx * 2
+        right_child_idx = idx * 2 + 1
+
+        if left_child_idx >= len(self.heap):
+            return False
+        elif right_child_idx >= len(self.heap):
+            if self.heap[idx] > self.heap[left_child_idx]:
+                return True
+            else:
+                return False
+        else:
+            # idx 2가 왼쪽자식보다 크면 바꾼다.
+            if self.heap[idx] > self.heap[left_child_idx]:
+                return True
+            # idx 2가 오른쪽자식보다 크면 바꾼다.
+            elif self.heap[idx] > self.heap[right_child_idx]:
+                return True
+            else:
+                return False
+
+    def insert(self, num):
+        self.heap.append(num)
+
+        idx = len(self.heap) - 1
+        while self.move_up(idx):
+            parent_idx = idx // 2
+            self.heap[idx], self.heap[parent_idx] = self.heap[parent_idx], self.heap[idx]
+            idx = parent_idx
 
 
-#### copy from https://developerbee.tistory.com/76
-# from sys import stdin
+
+
+
+h = Heap()
+sys.stdin = open('data_structure/ex.txt')
+N = int(sys.stdin.readline())
+for _ in range(N):
+    num = int(sys.stdin.readline())
+    if num == 0:
+        print(h.pop())
+    else:
+        h.insert(num)
+
+
+### copy from https://developerbee.tistory.com/76
+# import sys
 
 # class Heap:
 #     def __init__(self):
@@ -112,9 +202,10 @@ for i in range(N):
 
 
 # h = Heap()
-# N = int(stdin.readline())
+# sys.stdin = open('data_structure/ex.txt')
+# N = int(sys.stdin.readline())
 # for _ in range(N):
-#     num = int(stdin.readline())
+#     num = int(sys.stdin.readline())
 #     if num == 0:
 #         h.pop()
 #     else:
