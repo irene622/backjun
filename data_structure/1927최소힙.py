@@ -115,7 +115,7 @@ for _ in range(N):
 
 
 ### copy from https://developerbee.tistory.com/76
-# import sys
+# from sys import stdin
 
 # class Heap:
 #     def __init__(self):
@@ -202,10 +202,9 @@ for _ in range(N):
 
 
 # h = Heap()
-# sys.stdin = open('data_structure/ex.txt')
-# N = int(sys.stdin.readline())
+# N = int(stdin.readline())
 # for _ in range(N):
-#     num = int(sys.stdin.readline())
+#     num = int(stdin.readline())
 #     if num == 0:
 #         h.pop()
 #     else:
