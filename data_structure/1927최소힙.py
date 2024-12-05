@@ -39,7 +39,7 @@ class Heap:
 
             return output
     
-    def move_up(self, idx):
+    def move_down(self, idx):
         left_child_idx = idx * 2
         right_child_idx = idx * 2 + 1
         
@@ -69,26 +69,16 @@ class Heap:
                 return False
             
     
-    def move_down(self, idx):
-        left_child_idx = idx * 2
-        right_child_idx = idx * 2 + 1
-
-        if left_child_idx >= len(self.heap):
+    def move_up(self, idx):
+        if idx <= 1:
             return False
-        elif right_child_idx >= len(self.heap):
-            if self.heap[idx] > self.heap[left_child_idx]:
-                return True
-            else:
-                return False
+        
+        parent_idx = idx // 2
+        if self.heap[idx] < self.heap[parent_idx]:
+            return True
         else:
-            # idx 2가 왼쪽자식보다 크면 바꾼다.
-            if self.heap[idx] > self.heap[left_child_idx]:
-                return True
-            # idx 2가 오른쪽자식보다 크면 바꾼다.
-            elif self.heap[idx] > self.heap[right_child_idx]:
-                return True
-            else:
-                return False
+            return False
+
 
     def insert(self, num):
         self.heap.append(num)
