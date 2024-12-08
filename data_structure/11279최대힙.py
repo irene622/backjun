@@ -7,7 +7,7 @@ class MaxHeap():
         self.heap.append(None)
 
     def pop(self):
-        if len(heap) <= 1:
+        if len(self.heap) <= 1:
             output = 0
         else:
             output = self.heap.pop(1)
