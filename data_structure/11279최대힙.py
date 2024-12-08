@@ -15,6 +15,59 @@ class MaxHeap():
             self.heap[1] = self.heap[-1]
             del self.heap[-1]
 
+            idx = 1
+            if self.move_down(idx):
+                child_left_idx = idx*2
+                child_right_idx = idx*2+1
+
+                # 왼쪽 자식만 있는 경우.
+                if child_right_idx >= len(self.heap):
+                    if self.heap[child_left_idx] > self.heap[idx]:
+                        self.heap[child_left_idx], self.heap[idx] = (
+                            self.heap[idx],
+                            self.heap[child_left_idx],
+                        )
+                        idx = child_left_idx
+                else:
+                    # 왼쪽 자식, 오른쪽 자식이 있는 경우.
+                    if self.heap[child_left_idx] > self.heap[child_right_idx]:
+                        if self.heap[child_left_idx] > self.heap[idx]:
+                            self.heap[child_left_idx], self.heap[idx] = (
+                                self.heap[idx],
+                                self.heap[child_left_idx],
+                            )
+                            idx = child_left_idx
+                    else:
+                        if self.heap[child_right_idx] > self.heap[idx]:
+                            self.heap[child_right_idx], self.heap[idx] = (
+                                self.heap[idx],
+                                self.heap[child_right_idx],
+                            )
+                            idx = child_right_idx
+
+        return output
+    
+    def move_down(self, idx):
+        child_left_idx = idx*2
+        child_right_idx = idx*2+1
+
+        if child_left_idx >= len(self.heap):
+            # 왼쪽 자식 없는 경우.
+            # 예, (1, ())이고 heap=[None, 1]. left_idx=2 >= len(heap)=2
+            return False
+        elif child_right_idx >= len(self.heap):
+            # 오른쪽자식 없고, 왼쪽 자식만 있는 경우.
+            # 예, (1, (2,))인 상황에서 heap=[None, 1, 2]. right_idx=3 >= len(heap)=3 
+            if self.heap[child_left_idx] > self.heap[idx]:
+                return True
+        else:
+            if self.heap[child_left_idx] > self.heap[idx]:
+                return True
+            elif self.heap[child_right_idx] > self.heap[idx]:
+                return True
+            else:
+                return False
+
             
 
 
