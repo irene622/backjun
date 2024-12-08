@@ -16,7 +16,7 @@ class Heap:
         else:
             output = self.heap[1]
 
-            # 왜있음?
+            # 맨 앞에 있는거 pop할 거고, 맨 뒤에있는거 앞으로 올려서 재정렬한다.
             self.heap[1] = self.heap[-1]
             del self.heap[-1]
 
@@ -27,28 +27,42 @@ class Heap:
 
                 # idx의 오른쪽 자식이 없을 때
                 if right_child_idx >= len(self.heap):
+                    # (부모:3, 자식:(2,))인 경우. 위치를 바꾸고, idx를 바꾼위치의 인덱스로 바꾸어 검사한다.
                     if self.heap[idx] > self.heap[left_child_idx]:
                         self.heap[idx], self.heap[left_child_idx] = (
                             self.heap[left_child_idx],
                             self.heap[idx],
                         )
                         idx = left_child_idx
+                        
                 else:
-                    # TODO...
-                    if self.heap[left_child_idx] < self.heap[right_child_idx]:
-                        if self.heap[idx] > self.heap[left_child_idx]:
-                            self.heap[idx], self.heap[left_child_idx] = (
-                                self.heap[left_child_idx],
-                                self.heap[idx],
-                            )
-                            idx = left_child_idx
-                    else:
-                        if self.heap[idx] > self.heap[right_child_idx]:
-                            self.heap[idx], self.heap[right_child_idx] = (
-                                self.heap[right_child_idx],
-                                self.heap[idx],
-                            )
-                            idx = right_child_idx
+                    # (부모:3, 자식:(2,4)), (부모:3, 자식:(2,1))인 경우.
+                    if self.heap[idx] > self.heap[left_child_idx]:
+                        self.heap[idx], self.heap[left_child_idx] = (
+                            self.heap[left_child_idx],
+                            self.heap[idx],
+                        )
+                        idx = left_child_idx
+                    elif self.heap[idx] > self.heap[right_child_idx]:
+                        self.heap[idx], self.heap[right_child_idx] = (
+                            self.heap[right_child_idx],
+                            self.heap[idx],
+                        )
+                        idx = right_child_idx
+                    # if self.heap[left_child_idx] < self.heap[right_child_idx]:
+                    #     if self.heap[idx] > self.heap[left_child_idx]:
+                    #         self.heap[idx], self.heap[left_child_idx] = (
+                    #             self.heap[left_child_idx],
+                    #             self.heap[idx],
+                    #         )
+                    #         idx = left_child_idx
+                    # else:
+                    #     if self.heap[idx] > self.heap[right_child_idx]:
+                    #         self.heap[idx], self.heap[right_child_idx] = (
+                    #             self.heap[right_child_idx],
+                    #             self.heap[idx],
+                    #         )
+                    #         idx = right_child_idx
 
             return output
 
