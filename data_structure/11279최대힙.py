@@ -10,7 +10,7 @@ class MaxHeap():
         if len(self.heap) <= 1:
             output = 0
         else:
-            output = self.heap.pop(1)
+            output = self.heap[1]
 
             self.heap[1] = self.heap[-1]
             del self.heap[-1]
