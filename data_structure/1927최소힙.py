@@ -20,6 +20,7 @@ class Heap:
             self.heap[1] = self.heap[-1]
             del self.heap[-1]
 
+            # pop 했으니까, 재정렬해야지.
             idx = 1
             while self.move_down(idx):
                 left_child_idx = idx * 2
