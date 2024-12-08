@@ -38,32 +38,20 @@ class Heap:
                 else:
                     # (부모:3, 자식:(2,4))인 경우에는 괜찮지만, (부모:3, 자식:(2,1))인 경우에는 안된다. 
                     # 자식의 노드중 작은 것을 비교해서 바꿔줘야한다.
-                    if self.heap[idx] > self.heap[left_child_idx]:
-                        self.heap[idx], self.heap[left_child_idx] = (
-                            self.heap[left_child_idx],
-                            self.heap[idx],
-                        )
-                        idx = left_child_idx
-                    elif self.heap[idx] > self.heap[right_child_idx]:
-                        self.heap[idx], self.heap[right_child_idx] = (
-                            self.heap[right_child_idx],
-                            self.heap[idx],
-                        )
-                        idx = right_child_idx
-                    # if self.heap[left_child_idx] < self.heap[right_child_idx]:
-                    #     if self.heap[idx] > self.heap[left_child_idx]:
-                    #         self.heap[idx], self.heap[left_child_idx] = (
-                    #             self.heap[left_child_idx],
-                    #             self.heap[idx],
-                    #         )
-                    #         idx = left_child_idx
-                    # else:
-                    #     if self.heap[idx] > self.heap[right_child_idx]:
-                    #         self.heap[idx], self.heap[right_child_idx] = (
-                    #             self.heap[right_child_idx],
-                    #             self.heap[idx],
-                    #         )
-                    #         idx = right_child_idx
+                    if self.heap[left_child_idx] < self.heap[right_child_idx]:
+                        if self.heap[idx] > self.heap[left_child_idx]:
+                            self.heap[idx], self.heap[left_child_idx] = (
+                                self.heap[left_child_idx],
+                                self.heap[idx],
+                            )
+                            idx = left_child_idx
+                    else:
+                        if self.heap[idx] > self.heap[right_child_idx]:
+                            self.heap[idx], self.heap[right_child_idx] = (
+                                self.heap[right_child_idx],
+                                self.heap[idx],
+                            )
+                            idx = right_child_idx
 
             return output
 
