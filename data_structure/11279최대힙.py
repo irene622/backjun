@@ -16,7 +16,7 @@ class MaxHeap():
             del self.heap[-1]
 
             idx = 1
-            if self.move_down(idx):
+            while self.move_down(idx):
                 child_left_idx = idx*2
                 child_right_idx = idx*2+1
 
@@ -67,6 +67,30 @@ class MaxHeap():
                 return True
             else:
                 return False
+            
+    def insert(self, num):
+        self.heap.append(num)
+        idx = len(self.heap) - 1
+
+        while self.move_up(idx):
+            parent_idx = idx // 2
+            if self.heap[parent_idx] < self.heap[idx]:
+                self.heap[parent_idx], self.heap[idx] = (
+                    self.heap[idx],
+                    self.heap[parent_idx],
+                )
+                idx = parent_idx
+    
+    def move_up(self, idx):
+        if idx <= 1:
+            return False
+
+        parent_idx = idx // 2
+        if self.heap[parent_idx] < self.heap[idx]:
+            return True
+        else:
+            return False
+
 
             
 
