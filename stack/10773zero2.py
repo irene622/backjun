@@ -11,6 +11,6 @@ for i in range(commands_num):
     else:
         result += num
     prev_num = num
-print('----')
+print("----")
 print(result)
 # 0이 두번이상 나올 상황을 예상못함.

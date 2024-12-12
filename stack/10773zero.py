@@ -9,5 +9,5 @@ for i in range(commands_num):
         stack.pop()
     else:
         stack.append(num)
-print('----')
+print("----")
 print(sum(stack))
