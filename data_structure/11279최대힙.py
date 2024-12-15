@@ -101,3 +101,22 @@ for _ in range(N):
         print(heap.pop())
     else:
         heap.insert(num)
+
+
+
+############ 파이썬 heapq 이용
+import heapq
+N = int(sys.stdin.readline().strip())
+
+min_heap = []
+
+for _ in range(N):
+    n = int(sys.stdin.readline().strip())
+    
+    if n == 0:
+        if len(min_heap):
+            print(heapq.heappop(min_heap))
+        else:
+            print(0)
+    else:
+        heapq.heappush(min_heap, n)
