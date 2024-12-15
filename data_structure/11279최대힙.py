@@ -108,15 +108,15 @@ for _ in range(N):
 import heapq
 N = int(sys.stdin.readline().strip())
 
-min_heap = []
+max_heap = []
 
 for _ in range(N):
     n = int(sys.stdin.readline().strip())
     
     if n == 0:
-        if len(min_heap):
-            print(heapq.heappop(min_heap))
+        if len(max_heap):
+            print(-heapq.heappop(max_heap))
         else:
             print(0)
     else:
-        heapq.heappush(min_heap, n)
+        heapq.heappush(max_heap, -n)
