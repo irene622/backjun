@@ -123,18 +123,19 @@ for _ in range(N):
 
 
 ############ 파이썬 heapq 이용
+import sys
 import heapq
-N = int(sys.stdin.readline().strip())
+N = int(sys.stdin.readline())
 
-max_heap = []
+min_heap = []
 
 for _ in range(N):
     n = int(sys.stdin.readline().strip())
     
     if n == 0:
-        if len(max_heap):
-            print(heapq.heappop(max_heap))
+        if len(min_heap):
+            print(heapq.heappop(min_heap))
         else:
             print(0)
     else:
-        heapq.heappush(max_heap, n)
+        heapq.heappush(min_heap, n)
