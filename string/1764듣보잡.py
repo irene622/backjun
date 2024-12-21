@@ -1,7 +1,7 @@
 import sys
 
-sys.stdin = open('string/1764.txt', 'r')
-no_heard, no_look = map(int, sys.stdin.readline().strip().split(' '))
+sys.stdin = open("string/1764.txt", "r")
+no_heard, no_look = map(int, sys.stdin.readline().strip().split(" "))
 
 no_heard_set = set()
 for i in range(no_heard):
