@@ -3,13 +3,13 @@ import heapq
 
 sys.stdin = open('data_structure/ex.txt')
 N = int(sys.stdin.readline().strip())
-heap = []
+heap = [] # 최소힙 정렬
 for i in range(N):
     numbers = map(int, sys.stdin.readline().strip().split())
 
     if i == 0:
         for num in numbers:
-            heapq.heappush(heap, num)
+            heapq.heappush(heap, num) # num울 heap에 추가.
     else:
         for num in numbers:
             if heap[0] < num:
