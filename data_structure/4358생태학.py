@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open('data_structure/ex.txt')
+sys.stdin = open("data_structure/ex.txt")
 info = {}
 total = 0
 
@@ -16,7 +16,7 @@ while True:
         info[name] += 1
 
 
-sorted_info = sorted(info.items(), key = lambda item: item[0])
+sorted_info = sorted(info.items(), key=lambda item: item[0])
 
 for k, v in sorted_info:
-    print(f'{k} {v/total*100:.4f}')
+    print(f"{k} {v/total*100:.4f}")
