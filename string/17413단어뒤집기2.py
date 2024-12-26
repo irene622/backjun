@@ -4,28 +4,28 @@ line = sys.stdin.readline().strip()
 
 # Using stack
 stack = []
-ans = ''
+ans = ""
 open = False
 for char in line:
-    if char == '<':
+    if char == "<":
         open = True
         for i in range(len(stack)):
             ans += stack.pop()
-    
+
     stack.append(char)
-    if char == '>':
+    if char == ">":
         open = False
         for _ in range(len(stack)):
             ans += stack.pop(0)
-        
+
     if open == False:
-        if char == ' ':
+        if char == " ":
             for i in range(len(stack)):
                 if i == 0:
                     stack.pop()
                     continue
                 ans += stack.pop()
-            ans += ' '
+            ans += " "
 
 if len(stack) != 0:
     for _ in range(len(stack)):
