@@ -26,6 +26,7 @@ for i in range(max_idx+1):
     current_height = higher_height
 
 current_height = 0
+# 가장 높은것 기준으로, 오른쪽의 넓이
 for i in range(1000,max_idx,-1):
     higher_height = max(heights[i],current_height)
     area += higher_height
