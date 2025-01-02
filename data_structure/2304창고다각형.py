@@ -17,8 +17,6 @@ for i in range(col):
         max_idx = idx
         max_hei = height
 
-print(max_idx, max_hei)
-
 area = 0
 current_height = 0
 # 가장 높은것 기준으로, 왼쪽의 넓이
@@ -32,3 +30,4 @@ for i in range(1000,max_idx,-1):
     higher_height = max(heights[i],current_height)
     area += higher_height
     current_height = higher_height
+print(area)
