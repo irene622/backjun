@@ -1,3 +1,6 @@
+############################ 
+# From https://recordofwonseok.tistory.com/409
+############################ 
 import sys
 
 sys.stdin = open('data_structure/ex.txt')
@@ -29,5 +32,3 @@ for i in range(1000,max_idx,-1):
     higher_height = max(heights[i],current_height)
     area += higher_height
     current_height = higher_height
-print('--------')
-print(area)
