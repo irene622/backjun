@@ -1,16 +1,16 @@
-############################ 
+############################
 # From https://recordofwonseok.tistory.com/409
-############################ 
+############################
 import sys
 
-sys.stdin = open('data_structure/ex.txt')
+sys.stdin = open("data_structure/ex.txt")
 col = int(sys.stdin.readline().strip())
 heights = [0 for _ in range(1001)]
 
 max_idx = 0
 max_hei = 0
 for i in range(col):
-    idx, height = map(int, sys.stdin.readline().strip().split(' '))
+    idx, height = map(int, sys.stdin.readline().strip().split(" "))
     heights[idx] = height
 
     if max_hei <= height:
@@ -20,15 +20,15 @@ for i in range(col):
 area = 0
 current_height = 0
 # 가장 높은것 기준으로, 왼쪽의 넓이
-for i in range(max_idx+1):
-    higher_height = max(heights[i],current_height)
+for i in range(max_idx + 1):
+    higher_height = max(heights[i], current_height)
     area += higher_height
     current_height = higher_height
 
 current_height = 0
 # 가장 높은것 기준으로, 오른쪽의 넓이
-for i in range(1000,max_idx,-1):
-    higher_height = max(heights[i],current_height)
+for i in range(1000, max_idx, -1):
+    higher_height = max(heights[i], current_height)
     area += higher_height
     current_height = higher_height
 print(area)
