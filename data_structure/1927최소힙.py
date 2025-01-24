@@ -35,9 +35,9 @@ class Heap:
                             self.heap[idx],
                         )
                         idx = left_child_idx
-                        
+
                 else:
-                    # (부모:3, 자식:(2,4))인 경우에는 괜찮지만, (부모:3, 자식:(2,1))인 경우에는 안된다. 
+                    # (부모:3, 자식:(2,4))인 경우에는 괜찮지만, (부모:3, 자식:(2,1))인 경우에는 안된다.
                     # 자식의 노드중 작은 것을 비교해서 바꿔줘야한다.
                     if self.heap[left_child_idx] < self.heap[right_child_idx]:
                         if self.heap[idx] > self.heap[left_child_idx]:
@@ -121,17 +121,17 @@ for _ in range(N):
         h.insert(num)
 
 
-
 ############ 파이썬 heapq 이용
 import sys
 import heapq
+
 N = int(sys.stdin.readline())
 
 min_heap = []
 
 for _ in range(N):
     n = int(sys.stdin.readline().strip())
-    
+
     if n == 0:
         if len(min_heap):
             print(heapq.heappop(min_heap))
