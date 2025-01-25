@@ -28,11 +28,11 @@ def dfs(starter):
         current = stack.pop()
         # reverse는 [4,3,2]로 정렬. stack으로 저장하고, 작은 순서를 먼저 방문하기 위해서.
         for i in sorted(graph[current], reverse=True):
+            if not dfsvisited[current]: # current가 아직 방문이 안되어 있으면, path에 남긴다.
+                dfs_path += ' ' + str(current)
+                dfsvisited[current] = True
             if not dfsvisited[i]:   # 자식 노드에서 방문한 것이 없으면, stack에 넣는다.
                 stack.append(i)
-                if not dfsvisited[current]: # current가 아직 방문이 안되어 있으면, path에 남긴다.
-                    dfs_path += ' ' + str(current)
-                dfsvisited[current] = True
     return dfs_path
 
 # def dfs(starter):
