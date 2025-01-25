@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 
-sys.stdin = open('dfsbfs/1260input.txt', 'r')
+sys.stdin = open('dfsbfs/ex.txt', 'r')
 num, lines, starter = map(int, sys.stdin.readline().strip().split(' '))
 graph = {i: [] for i in range(1, num + 1)}
 dfsvisited = {i: False for i in range(1, num + 1)}
@@ -19,32 +19,30 @@ for _ in range(lines):
 
 bfsvisited = {k:v for k,v in dfsvisited.items()}
 
-def dfs(starter):
-    stack = [starter]  # 스택 사용 # 새롭게 넣은걸 먼저 한다.
-    dfsvisited[starter] = True
-    dfs_path = str(starter)
-
-    while stack:
-        current = stack.pop()  
-        for i in sorted(graph[current], reverse=True):  
-            if not dfsvisited[i]:
-                stack.append(i)
-                if not dfsvisited[current]:
-                    dfs_path += ' ' + str(current)
-                dfsvisited[current] = True
-    return dfs_path
-
 # def dfs(starter):
+#     stack = [starter]  # 스택 사용 # 새롭게 넣은걸 먼저 한다.
 #     dfsvisited[starter] = True
-#     bfs_path = str(starter)
-#     print(str(starter), end=' ')
-#     for neighbor in sorted(graph[starter]):
-#         if not dfsvisited[neighbor]:
-#             bfs_path += ' ' + dfs(neighbor)
-#     # return bfs_path
+#     dfs_path = str(starter)
+
+#     while stack:
+#         current = stack.pop()  
+#         for i in sorted(graph[current], reverse=True):  
+#             if not dfsvisited[i]:
+#                 stack.append(i)
+#                 if not dfsvisited[current]:
+#                     dfs_path += ' ' + str(current)
+#                 dfsvisited[current] = True
+#     return dfs_path
+
+def dfs(starter):
+    dfsvisited[starter] = True
+    bfs_path = str(starter)
+    for neighbor in sorted(graph[starter]):
+        if not dfsvisited[neighbor]:
+            bfs_path += ' ' + dfs(neighbor)
+    return bfs_path
 
 print(dfs(starter))
-# dfs(starter)
 # print('')
 
 def bfs(starter):
