@@ -44,7 +44,6 @@ def dfs(starter):
 #     return bfs_path
 
 print(dfs(starter))
-# print('')
 
 def bfs(starter):
     queue = deque([starter]) # 넣었던걸 다 하고, 다음 단계로 가겠다.
