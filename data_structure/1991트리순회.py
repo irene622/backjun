@@ -37,11 +37,24 @@ print(preorder_traversal(tree))
 
 def inorder(root): # 왼쪽 자식 -> 루트 -> 오른쪽 자식 순으로 탐색
     if root != '.': 
-    # TEST CASE를 예로 들면 B에서 tree[root][0] = "D"이고 D의 tree(root[0]) = "."이 돼서 root인 D를 출력하고 right로 넘어간다.
+        # 1. root A, inorder(B)
+        # 2-1. root B, inorder(D)
+        # 3-1. root D, inorder(.)   # 제일 왼쪽 자식을 찾았다!
+        # 4. root .     # if root != '.':에 걸리지 않는다.
+        # 3-2. 3번으로. print(D, end='')
+        # 3-3. root D, inorder(.)
+        # 5. root .
+        # 2-2. 2번으로. root B. print(B, end='')
+        # 2-3. root B, inorder(.)
+        # 6. root .
+        # 1-2. 1번으로. root A. print(A, end='')
+        # 1-3. root A. inorder(C)
+        # 7-1. root C, inorder(E)
+        # ...
         inorder(tree[root][0])  # left
         print(root, end='')  # root
         inorder(tree[root][1])  # right
-
+inorder('A')
 
 # 3. 후위 순회 : 왼쪽 자식 -> 오른쪽 자식 -> 루트이므로 재귀함수 순서도 왼쪽 재귀함수 -> 오른쪽 재귀함수 -> root 출력문
 
