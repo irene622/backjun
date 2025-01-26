@@ -1,5 +1,4 @@
 import sys
-from collections import deque
 
 sys.stdin = open('data_structure/ex.txt')
 N = int(sys.stdin.readline().strip())
@@ -35,6 +34,14 @@ print(preorder_traversal(tree))
 # https://velog.io/@ohk9134/백준-1991번-트리-순회-python-트리-구현
 ##############################
 
+# def preorder(root):
+#     if root != '.':
+#         print(root, end='')  # root
+#         preorder(tree[root][0])  # left
+#         preorder(tree[root][1])  # right
+# preorder('A')
+# print()
+
 def inorder(root): # 왼쪽 자식 -> 루트 -> 오른쪽 자식 순으로 탐색
     if root != '.': 
         # 1. root A, inorder(B)
@@ -55,6 +62,7 @@ def inorder(root): # 왼쪽 자식 -> 루트 -> 오른쪽 자식 순으로 탐�
         print(root, end='')  # root
         inorder(tree[root][1])  # right
 inorder('A')
+print()
 
 # 3. 후위 순회 : 왼쪽 자식 -> 오른쪽 자식 -> 루트이므로 재귀함수 순서도 왼쪽 재귀함수 -> 오른쪽 재귀함수 -> root 출력문
 
@@ -68,7 +76,7 @@ def postorder(root): # 왼쪽 자식 -> 오른쪽 자식 -> 루트 순으로 탐
         # 5. root .
         # 3-3. root D. print(D, end='')
         # 2-2. root B. postorder(.)     # 제일 왼쪽 자식에서 오른쪽 자식을 찾는다! 비록 . 이지만.
-        # 6. root .
+        # 6. root . 
         # 2-3. root B. print(B, end='')     # 제일 왼쪽 자식의 부모를 찾는다.
         # 1-2. root A. postorder(C)
         # 7-1. root C. postorder(E)
@@ -77,3 +85,4 @@ def postorder(root): # 왼쪽 자식 -> 오른쪽 자식 -> 루트 순으로 탐
         postorder(tree[root][1])  # right
         print(root, end='')  # root
 postorder('A')
+print()
