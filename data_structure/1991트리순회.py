@@ -60,6 +60,20 @@ inorder('A')
 
 def postorder(root): # 왼쪽 자식 -> 오른쪽 자식 -> 루트 순으로 탐색
     if root != '.':
+        # 1-1. root A. postorder(B)
+        # 2-1. root B. postorder(D)
+        # 3-1. root D. postorder(.)
+        # 4. root .
+        # 3-2. root D. postorder(.)     # 제일 왼쪽 자식을 찾았다!
+        # 5. root .
+        # 3-3. root D. print(D, end='')
+        # 2-2. root B. postorder(.)     # 제일 왼쪽 자식에서 오른쪽 자식을 찾는다! 비록 . 이지만.
+        # 6. root .
+        # 2-3. root B. print(B, end='')     # 제일 왼쪽 자식의 부모를 찾는다.
+        # 1-2. root A. postorder(C)
+        # 7-1. root C. postorder(E)
+        # 8-1. root E. postorder(.)
         postorder(tree[root][0])  # left
         postorder(tree[root][1])  # right
         print(root, end='')  # root
+postorder('A')
