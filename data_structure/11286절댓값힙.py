@@ -1,7 +1,7 @@
 import sys
 import heapq
 
-sys.stdin = open('data_structure/ex.txt')
+sys.stdin = open("data_structure/ex.txt")
 N = int(sys.stdin.readline().strip())
 
 abs_heap = []
